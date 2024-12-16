@@ -30,6 +30,8 @@ export const fileFilter = async (
         }
       }
     }
+
+    next();
   } catch (error) {
     next(error);
   }
