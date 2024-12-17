@@ -1,13 +1,14 @@
 import { Router } from "express";
 import {
   createBlogsController,
+  deleteBlogController,
   getBlogController,
   getBlogsController,
 } from "../controllers/blog.controller";
-import { uploader } from "../lib/multer";
 import { fileFilter } from "../lib/fileFilter";
-import { validateCreateBlog } from "../validators/blog.validator";
 import { verifyToken } from "../lib/jwt";
+import { uploader } from "../lib/multer";
+import { validateCreateBlog } from "../validators/blog.validator";
 
 const router = Router();
 
@@ -21,5 +22,6 @@ router.post(
   validateCreateBlog,
   createBlogsController
 );
+router.delete("/:id", verifyToken, deleteBlogController);
 
 export default router;
